@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shahzaib Majeed weds Afifa Maryam | Dreamy Wedding Invitation</title>
+    <title>Shahzaib Majeed weds Afifa Maryam | Wedding Invitation</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts: Playfair Display, Great Vibes & Montserrat -->
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
@@ -15,17 +15,17 @@
             theme: {
                 extend: {
                     colors: {
-                        dreamy: {
-                            950: '#1a0b2e', // Deep starlight purple
-                            900: '#26123b',
-                            800: '#3d1b59',
+                        twilight: {
+                            950: '#1a0b2e',
+                            900: '#260a40',
+                            800: '#3b125e',
                         },
-                        sunset: {
-                            gold: '#ffd700',
-                            rose: '#ffb7c5',
-                            lavender: '#e6e6fa',
-                            champagne: '#f7e7ce',
-                            peach: '#ffdab9',
+                        gold: {
+                            light: '#ffe57f',
+                            DEFAULT: '#ffd700',
+                            dark: '#d4af37',
+                            champagne: '#fdf6e2',
+                            rose: '#ffb7c5'
                         }
                     },
                     fontFamily: {
@@ -40,9 +40,10 @@
     <style>
         body {
             font-family: 'Montserrat', sans-serif;
-            background-color: #1a0b2e;
-            color: #f7e7ce;
+            background: linear-gradient(135deg, #1a0b2e 0%, #2e0854 50%, #4a0e4e 100%);
+            color: #fdf6e2;
             overflow-x: hidden;
+            min-height: 100vh;
         }
         .serif-font {
             font-family: 'Playfair Display', serif;
@@ -50,91 +51,126 @@
         .script-font {
             font-family: 'Great Vibes', cursive;
         }
-        .dreamy-gradient {
-            background: linear-gradient(135deg, #ffb7c5 0%, #ffd700 50%, #e6e6fa 100%);
+        .gold-gradient {
+            background: linear-gradient(135deg, #fff2b2 0%, #ffd700 50%, #ffb7c5 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
         .glass-card {
-            background: rgba(61, 27, 89, 0.45);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 183, 197, 0.3);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            background: rgba(45, 15, 78, 0.65);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 215, 0, 0.35);
+            box-shadow: 0 10px 40px 0 rgba(26, 11, 46, 0.7);
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease, border-color 0.4s ease;
         }
         .glass-card:hover {
-            border-color: rgba(255, 215, 0, 0.6);
-            box-shadow: 0 12px 40px -10px rgba(255, 183, 197, 0.3);
+            border-color: rgba(255, 215, 0, 0.8);
+            box-shadow: 0 20px 60px -10px rgba(255, 183, 197, 0.3);
+            transform: translateY(-6px);
         }
-        /* Scanner laser line animation */
+        @keyframes floatSlow {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(0.3deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+        @keyframes floatFast {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(-0.3deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+        @keyframes goldShimmer {
+            0% { opacity: 0.6; filter: drop-shadow(0 0 15px rgba(255,215,0,0.5)); }
+            50% { opacity: 1; filter: drop-shadow(0 0 35px rgba(255,183,197,0.8)); }
+            100% { opacity: 0.6; filter: drop-shadow(0 0 15px rgba(255,215,0,0.5)); }
+        }
+        .floating-element { animation: floatSlow 6s ease-in-out infinite; }
+        .floating-card { animation: floatFast 4.5s ease-in-out infinite; }
+        .shimmer-gold { animation: goldShimmer 3.5s ease-in-out infinite; }
         @keyframes scanLaser {
             0% { top: 0%; opacity: 0.8; }
             50% { opacity: 1; }
             100% { top: 100%; opacity: 0.8; }
         }
-        .scanner-beam {
-            animation: scanLaser 2s ease-in-out infinite alternate;
+        .scanner-beam { animation: scanLaser 2s ease-in-out infinite alternate; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #1a0b2e; }
+        ::-webkit-scrollbar-thumb { background: #ffd700; border-radius: 4px; }
+        .ripple {
+            position: absolute;
+            background: rgba(255, 215, 0, 0.4);
+            border-radius: 50%;
+            transform: scale(0);
+            animation: rippleEffect 0.6s linear;
+            pointer-events: none;
         }
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
+        @keyframes rippleEffect {
+            to { transform: scale(4); opacity: 0; }
         }
-        ::-webkit-scrollbar-track {
-            background: #1a0b2e;
+        .typing-cursor {
+            display: inline-block;
+            width: 3px;
+            background-color: #ffd700;
+            animation: blinkCursor 0.8s infinite;
         }
-        ::-webkit-scrollbar-thumb {
-            background: #ffb7c5;
-            border-radius: 4px;
+        @keyframes blinkCursor {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
         }
     </style>
 </head>
-<body class="selection:bg-pink-400 selection:text-purple-950">
+<body class="selection:bg-gold selection:text-twilight-950 pb-24 md:pb-0" onclick="triggerRipple(event)">
 
-    <!-- Ambient Audio & Sound FX Controller -->
-    <div class="fixed bottom-5 right-5 z-50 flex items-center gap-3">
-        <button onclick="toggleAudio()" id="audio-btn" class="glass-card text-sunset-rose p-3.5 rounded-full shadow-2xl hover:scale-110 transition-all flex items-center justify-center group" title="Toggle Dreamy Ambient Melody">
-            <i id="audio-icon" class="fa-solid fa-volume-xmark text-lg"></i>
-            <span class="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs transition-all duration-300 ease-in-out text-xs text-sunset-champagne pl-0 group-hover:pl-2">Dreamy Melody</span>
+    <!-- Ambient Calming Music & Sound FX Controller -->
+    <div class="fixed bottom-6 right-6 z-50 flex items-center gap-3">
+        <div id="eq-visualizer" class="hidden items-center gap-1 bg-twilight-950/90 px-4 py-2.5 rounded-full border border-gold/50 shadow-2xl backdrop-blur-md">
+            <span class="w-1 h-3 bg-gold animate-pulse rounded-full"></span>
+            <span class="w-1 h-6 bg-gold-light animate-pulse rounded-full" style="animation-delay: 0.2s"></span>
+            <span class="w-1 h-3 bg-rose-300 animate-pulse rounded-full" style="animation-delay: 0.4s"></span>
+            <span class="w-1 h-5 bg-gold animate-pulse rounded-full" style="animation-delay: 0.1s"></span>
+        </div>
+        <button onclick="toggleAmbientMusic(); playChime();" id="audio-btn" class="glass-card text-gold p-4 rounded-full shadow-2xl hover:scale-110 active:scale-95 transition-all flex items-center justify-center group border-2 border-gold" title="Play Calming Lullaby Music">
+            <i id="audio-icon" class="fa-solid fa-music text-xl"></i>
+            <span class="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs transition-all duration-300 ease-in-out text-xs text-gold-champagne pl-0 group-hover:pl-2">Calming Music</span>
         </button>
     </div>
 
     <!-- Success Modal Notification -->
-    <div id="toast-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md hidden p-4">
-        <div class="glass-card rounded-2xl p-8 max-w-md w-full text-center shadow-2xl transform transition-all border-2 border-pink-400">
-            <div class="w-16 h-16 bg-pink-500/20 rounded-full flex items-center justify-center mx-auto mb-4 border border-pink-400 animate-bounce">
-                <i class="fa-solid fa-heart text-pink-300 text-2xl"></i>
+    <div id="toast-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-md hidden p-4">
+        <div class="glass-card rounded-3xl p-8 max-w-md w-full text-center shadow-2xl transform transition-all border-2 border-gold floating-element">
+            <div class="w-16 h-16 bg-gold/20 rounded-full flex items-center justify-center mx-auto mb-4 border border-gold animate-bounce">
+                <i class="fa-solid fa-heart text-gold text-2xl"></i>
             </div>
-            <h3 id="toast-title" class="serif-font text-3xl font-bold dreamy-gradient mb-2">RSVP Confirmed!</h3>
-            <p id="toast-message" class="text-sunset-champagne/90 text-sm mb-6">Your response has been successfully registered. We are thrilled to celebrate with you!</p>
-            <button onclick="closeModal()" class="bg-gradient-to-r from-pink-400 to-yellow-400 hover:opacity-90 text-purple-950 font-bold px-8 py-3 rounded-full transition-all shadow-lg uppercase tracking-widest text-xs">
+            <h3 id="toast-title" class="serif-font text-3xl font-bold gold-gradient mb-2">RSVP Confirmed!</h3>
+            <p id="toast-message" class="text-gold-champagne/90 text-sm mb-6">Your response has been successfully registered. We are thrilled to celebrate with you!</p>
+            <button onclick="closeModal(); playChime();" class="bg-gradient-to-r from-gold via-gold-light to-gold-dark hover:opacity-90 active:scale-95 text-twilight-950 font-black px-8 py-3.5 rounded-full transition-all shadow-xl uppercase tracking-widest text-xs">
                 Continue
             </button>
         </div>
     </div>
 
-    <!-- Location Scanner Modal / Simulation -->
-    <div id="scanner-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-md hidden p-4">
-        <div class="glass-card rounded-2xl p-6 md:p-8 max-w-lg w-full text-center shadow-2xl relative overflow-hidden border-2 border-pink-400">
-            <!-- Laser scanning overlay -->
-            <div class="absolute inset-x-0 h-1 bg-pink-400 shadow-[0_0_15px_#ffb7c5] scanner-beam pointer-events-none"></div>
+    <!-- Location Scanner Modal -->
+    <div id="scanner-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md hidden p-4">
+        <div class="glass-card rounded-3xl p-6 md:p-8 max-w-lg w-full text-center shadow-2xl relative overflow-hidden border-2 border-gold">
+            <div class="absolute inset-x-0 h-1 bg-gold shadow-[0_0_20px_#ffd700] scanner-beam pointer-events-none"></div>
             
-            <div class="w-16 h-16 bg-purple-950/80 rounded-full flex items-center justify-center mx-auto mb-4 border border-pink-400">
-                <i class="fa-solid fa-satellite-dish text-pink-300 text-2xl animate-pulse"></i>
+            <div class="w-16 h-16 bg-twilight-950/90 rounded-full flex items-center justify-center mx-auto mb-4 border border-gold">
+                <i class="fa-solid fa-satellite-dish text-gold text-2xl animate-pulse"></i>
             </div>
-            <span class="text-[10px] uppercase tracking-[0.3em] text-pink-300 font-bold block mb-1">Dreamy GPS Starlight Scanner</span>
-            <h3 id="scanner-venue-title" class="serif-font text-2xl font-bold dreamy-gradient mb-2">Scanning Venue...</h3>
-            <p id="scanner-status" class="text-sunset-champagne/80 text-xs font-mono mb-6">Acquiring starlight coordinates &amp; optimal route...</p>
+            <span class="text-[10px] uppercase tracking-[0.3em] text-gold font-bold block mb-1">GPS Starlight Radar Scanner</span>
+            <h3 id="scanner-venue-title" class="serif-font text-2xl font-bold gold-gradient mb-2">Scanning Venue...</h3>
+            <p id="scanner-status" class="text-gold-champagne/80 text-xs font-mono mb-6">Locking onto exact venue coordinates...</p>
             
-            <div class="bg-purple-950/80 rounded-xl p-4 border border-pink-400/20 text-left font-mono text-xs text-sunset-champagne space-y-2 mb-6">
-                <div class="flex justify-between"><span>LAT/LONG:</span> <span id="scan-lat" class="text-pink-300">31.5204° N, 74.3587° E</span></div>
-                <div class="flex justify-between"><span>SIGNAL SECURE:</span> <span class="text-emerald-400">STARLIGHT ENCRYPTED</span></div>
-                <div class="flex justify-between"><span>STATUS:</span> <span id="scan-progress" class="text-yellow-300">READY FOR NAVIGATION</span></div>
+            <div class="bg-twilight-950/90 rounded-2xl p-4 border border-gold/30 text-left font-mono text-xs text-gold-champagne space-y-2 mb-6">
+                <div class="flex justify-between"><span>LAT/LONG:</span> <span id="scan-lat" class="text-gold">31.5204° N, 74.3587° E</span></div>
+                <div class="flex justify-between"><span>SIGNAL SECURE:</span> <span class="text-emerald-400">ENCRYPTED</span></div>
+                <div class="flex justify-between"><span>STATUS:</span> <span id="scan-progress" class="text-gold-light">READY FOR NAVIGATION</span></div>
             </div>
 
             <div class="flex gap-3">
-                <button onclick="launchDirections()" class="flex-1 bg-gradient-to-r from-pink-400 to-yellow-400 hover:opacity-90 text-purple-950 font-bold py-3 rounded-xl transition-all shadow-lg uppercase tracking-wider text-xs flex items-center justify-center gap-2">
+                <button onclick="launchDirections(); playChime();" class="flex-1 bg-gradient-to-r from-gold via-gold-light to-gold-dark hover:opacity-90 active:scale-95 text-twilight-950 font-black py-3.5 rounded-2xl transition-all shadow-xl uppercase tracking-wider text-xs flex items-center justify-center gap-2">
                     <i class="fa-solid fa-diamond-turn-right"></i> Launch GPS Route
                 </button>
-                <button onclick="closeScanner()" class="px-5 bg-purple-900/60 hover:bg-purple-900 text-sunset-champagne border border-pink-400/40 font-medium py-3 rounded-xl transition-all uppercase tracking-wider text-xs">
+                <button onclick="closeScanner(); playChime();" class="px-5 bg-twilight-900/80 hover:bg-twilight-900 active:scale-95 text-gold-champagne border border-gold/40 font-bold py-3.5 rounded-2xl transition-all uppercase tracking-wider text-xs">
                     Close
                 </button>
             </div>
@@ -145,80 +181,79 @@
     <canvas id="particle-canvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
 
     <!-- Header / Navbar -->
-    <header class="fixed top-0 left-0 right-0 z-40 bg-dreamy-950/70 backdrop-blur-md border-b border-pink-500/20">
-        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-            <a href="#home" class="serif-font text-2xl font-bold dreamy-gradient tracking-wider">S &amp; A</a>
-            <nav class="hidden md:flex space-x-8 text-xs uppercase tracking-[0.2em] text-sunset-champagne font-medium">
-                <a href="#home" class="hover:text-pink-300 transition-colors">Home</a>
-                <a href="#couple" class="hover:text-pink-300 transition-colors">The Couple</a>
-                <a href="#events" class="hover:text-pink-300 transition-colors">Events &amp; Scanner</a>
-                <a href="#rsvp" class="hover:text-pink-300 transition-colors">RSVP</a>
-                <a href="#wishes" class="hover:text-pink-300 transition-colors">Wishes Wall</a>
+    <header class="fixed top-0 left-0 right-0 z-40 bg-twilight-950/80 backdrop-blur-xl border-b border-gold/20">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#home" onclick="playChime()" class="serif-font text-2xl font-bold gold-gradient tracking-wider">S &amp; A</a>
+            <nav class="hidden md:flex space-x-8 text-xs uppercase tracking-[0.2em] text-gold-champagne font-semibold">
+                <a href="#home" onclick="playChime()" class="hover:text-gold transition-colors">Home</a>
+                <a href="#couple" onclick="playChime()" class="hover:text-gold transition-colors">The Couple</a>
+                <a href="#events" onclick="playChime()" class="hover:text-gold transition-colors">Events &amp; Timings</a>
+                <a href="#rsvp" onclick="playChime()" class="hover:text-gold transition-colors">RSVP</a>
+                <a href="#wishes" onclick="playChime()" class="hover:text-gold transition-colors">Wishes Wall</a>
             </nav>
-            <button onclick="toggleMobileMenu()" class="md:hidden text-pink-300 text-xl focus:outline-none">
+            <button onclick="toggleMobileMenu(); playChime();" class="md:hidden text-gold text-xl focus:outline-none p-2">
                 <i class="fa-solid fa-bars"></i>
             </button>
         </div>
         <!-- Mobile Navigation Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-dreamy-950 border-b border-pink-500/20 px-4 pt-3 pb-6 space-y-3 text-center">
-            <a href="#home" onclick="toggleMobileMenu()" class="block text-sunset-champagne hover:text-pink-300 text-sm py-1">Home</a>
-            <a href="#couple" onclick="toggleMobileMenu()" class="block text-sunset-champagne hover:text-pink-300 text-sm py-1">The Couple</a>
-            <a href="#events" onclick="toggleMobileMenu()" class="block text-sunset-champagne hover:text-pink-300 text-sm py-1">Events &amp; Scanner</a>
-            <a href="#rsvp" onclick="toggleMobileMenu()" class="block text-sunset-champagne hover:text-pink-300 text-sm py-1">RSVP</a>
-            <a href="#wishes" onclick="toggleMobileMenu()" class="block text-sunset-champagne hover:text-pink-300 text-sm py-1">Wishes Wall</a>
+        <div id="mobile-menu" class="hidden md:hidden bg-twilight-950/95 border-b border-gold/30 px-6 pt-4 pb-6 space-y-3 text-center backdrop-blur-2xl">
+            <a href="#home" onclick="toggleMobileMenu(); playChime();" class="block text-gold-champagne hover:text-gold text-sm py-1 font-semibold">Home</a>
+            <a href="#couple" onclick="toggleMobileMenu(); playChime();" class="block text-gold-champagne hover:text-gold text-sm py-1 font-semibold">The Couple</a>
+            <a href="#events" onclick="toggleMobileMenu(); playChime();" class="block text-gold-champagne hover:text-gold text-sm py-1 font-semibold">Events &amp; Timings</a>
+            <a href="#rsvp" onclick="toggleMobileMenu(); playChime();" class="block text-gold-champagne hover:text-gold text-sm py-1 font-semibold">RSVP</a>
+            <a href="#wishes" onclick="toggleMobileMenu(); playChime();" class="block text-gold-champagne hover:text-gold text-sm py-1 font-semibold">Wishes Wall</a>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section id="home" class="relative min-h-screen flex items-center justify-center pt-24 pb-16 px-4 text-center z-10 overflow-hidden">
-        <div class="absolute w-[600px] h-[600px] bg-pink-500/10 rounded-full blur-[140px] pointer-events-none"></div>
-        <div class="absolute w-[400px] h-[400px] bg-yellow-500/10 rounded-full blur-[120px] pointer-events-none right-10 bottom-10"></div>
+    <section id="home" class="relative min-h-screen flex items-center justify-center pt-28 pb-20 px-4 text-center z-10 overflow-hidden">
+        <div class="absolute w-[600px] h-[600px] bg-gold/10 rounded-full blur-[160px] pointer-events-none floating-element"></div>
+        <div class="absolute w-[450px] h-[450px] bg-pink-600/10 rounded-full blur-[140px] pointer-events-none right-5 bottom-5 shimmer-gold"></div>
         
-        <div class="max-w-4xl mx-auto space-y-6">
-            <div class="inline-block border border-pink-400/40 rounded-full px-6 py-2 bg-purple-950/60 backdrop-blur-md shadow-lg animate-pulse">
-                <p class="text-xs uppercase tracking-[0.3em] text-pink-300 font-semibold">With the Grace of Almighty Allah</p>
+        <div class="max-w-4xl mx-auto space-y-6 floating-card">
+            <div class="inline-block border border-gold/50 rounded-full px-8 py-2.5 bg-twilight-950/80 backdrop-blur-md shadow-2xl shimmer-gold">
+                <p class="text-xs uppercase tracking-[0.35em] text-gold font-bold">With the Grace of Almighty Allah</p>
             </div>
             
-            <h2 class="script-font text-4xl md:text-5xl text-pink-200">Bismillah-ir-Rahman-ir-Rahim</h2>
+            <h2 class="script-font text-4xl md:text-6xl text-gold-light">Bismillah-ir-Rahman-ir-Rahim</h2>
             
-            <h1 class="serif-font text-5xl md:text-8xl font-bold dreamy-gradient tracking-wide py-2 leading-tight">
-                Shahzaib Majeed <br class="hidden sm:inline">
-                <span class="script-font text-4xl md:text-6xl text-pink-300 font-normal">&amp;</span> 
-                Afifa Maryam
+            <!-- Typewriter Animated Title -->
+            <h1 class="serif-font text-4xl sm:text-6xl md:text-8xl font-black gold-gradient tracking-wide py-2 leading-tight min-h-[140px] md:min-h-[220px] flex flex-col items-center justify-center drop-shadow-2xl">
+                <span id="typewriter-text"></span><span class="typing-cursor h-12 md:h-20 inline-block align-middle ml-1"></span>
             </h1>
 
-            <p class="text-sunset-champagne/90 text-sm md:text-base max-w-xl mx-auto font-light leading-relaxed">
+            <p class="text-gold-champagne/90 text-sm md:text-base max-w-xl mx-auto font-light leading-relaxed">
                 Together with our families, we cordially invite you to celebrate the joyous union of our hearts and lives.
             </p>
 
             <!-- Live Countdown Timer -->
-            <div class="pt-2 pb-4">
-                <p class="text-xs uppercase tracking-[0.25em] text-pink-300 font-semibold mb-4">Countdown to Mehndi Celebration</p>
+            <div class="pt-4 pb-2">
+                <p class="text-xs uppercase tracking-[0.3em] text-gold font-bold mb-4">Countdown to Mehndi Celebration</p>
                 <div class="grid grid-cols-4 gap-3 max-w-md mx-auto">
-                    <div class="glass-card rounded-2xl p-3 shadow-xl">
-                        <span id="days" class="serif-font text-3xl md:text-4xl font-bold dreamy-gradient block">00</span>
-                        <span class="text-[9px] md:text-[10px] uppercase tracking-widest text-sunset-champagne/70">Days</span>
+                    <div class="glass-card rounded-2xl p-3.5 shadow-xl border-gold/40">
+                        <span id="days" class="serif-font text-3xl md:text-4xl font-black gold-gradient block">00</span>
+                        <span class="text-[9px] md:text-[10px] uppercase tracking-widest text-gold-champagne/70 font-semibold">Days</span>
                     </div>
-                    <div class="glass-card rounded-2xl p-3 shadow-xl">
-                        <span id="hours" class="serif-font text-3xl md:text-4xl font-bold dreamy-gradient block">00</span>
-                        <span class="text-[9px] md:text-[10px] uppercase tracking-widest text-sunset-champagne/70">Hours</span>
+                    <div class="glass-card rounded-2xl p-3.5 shadow-xl border-gold/40">
+                        <span id="hours" class="serif-font text-3xl md:text-4xl font-black gold-gradient block">00</span>
+                        <span class="text-[9px] md:text-[10px] uppercase tracking-widest text-gold-champagne/70 font-semibold">Hours</span>
                     </div>
-                    <div class="glass-card rounded-2xl p-3 shadow-xl">
-                        <span id="minutes" class="serif-font text-3xl md:text-4xl font-bold dreamy-gradient block">00</span>
-                        <span class="text-[9px] md:text-[10px] uppercase tracking-widest text-sunset-champagne/70">Minutes</span>
+                    <div class="glass-card rounded-2xl p-3.5 shadow-xl border-gold/40">
+                        <span id="minutes" class="serif-font text-3xl md:text-4xl font-black gold-gradient block">00</span>
+                        <span class="text-[9px] md:text-[10px] uppercase tracking-widest text-gold-champagne/70 font-semibold">Minutes</span>
                     </div>
-                    <div class="glass-card rounded-2xl p-3 shadow-xl">
-                        <span id="seconds" class="serif-font text-3xl md:text-4xl font-bold dreamy-gradient block">00</span>
-                        <span class="text-[9px] md:text-[10px] uppercase tracking-widest text-sunset-champagne/70">Seconds</span>
+                    <div class="glass-card rounded-2xl p-3.5 shadow-xl border-gold/40">
+                        <span id="seconds" class="serif-font text-3xl md:text-4xl font-black gold-gradient block">00</span>
+                        <span class="text-[9px] md:text-[10px] uppercase tracking-widest text-gold-champagne/70 font-semibold">Seconds</span>
                     </div>
                 </div>
             </div>
 
-            <div class="pt-4 flex flex-col sm:flex-row justify-center gap-4">
-                <a href="#events" onclick="playClickSound()" class="bg-gradient-to-r from-pink-400 to-yellow-400 hover:opacity-90 text-purple-950 font-bold px-8 py-3.5 rounded-full transition-all shadow-xl tracking-wider text-xs uppercase flex items-center justify-center gap-2">
+            <div class="pt-6 flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#events" onclick="playChime()" class="bg-gradient-to-r from-gold via-gold-light to-gold-dark hover:opacity-95 active:scale-95 text-twilight-950 font-black px-9 py-4 rounded-full transition-all shadow-2xl tracking-wider text-xs uppercase flex items-center justify-center gap-2">
                     <i class="fa-solid fa-calendar-days"></i> View Events &amp; Locations
                 </a>
-                <a href="#rsvp" onclick="playClickSound()" class="glass-card hover:bg-pink-500/10 text-sunset-champagne font-bold px-8 py-3.5 rounded-full transition-all tracking-wider text-xs uppercase flex items-center justify-center gap-2">
+                <a href="#rsvp" onclick="playChime()" class="glass-card hover:bg-gold/10 active:scale-95 text-gold-champagne font-bold px-9 py-4 rounded-full transition-all tracking-wider text-xs uppercase flex items-center justify-center gap-2 border-gold/40">
                     <i class="fa-solid fa-envelope-open-text"></i> RSVP Now
                 </a>
             </div>
@@ -226,36 +261,34 @@
     </section>
 
     <!-- The Couple Section -->
-    <section id="couple" class="py-20 px-4 relative z-10 bg-purple-950/30 border-y border-pink-500/20">
+    <section id="couple" class="py-24 px-4 relative z-10 bg-twilight-900/40 border-y border-gold/30">
         <div class="max-w-5xl mx-auto text-center space-y-12">
-            <div class="space-y-2">
-                <span class="text-xs uppercase tracking-[0.3em] text-pink-300 font-semibold">The Bride &amp; Groom</span>
-                <h2 class="serif-font text-4xl md:text-5xl font-bold dreamy-gradient">Destined in Starlight</h2>
+            <div class="space-y-3">
+                <span class="text-xs uppercase tracking-[0.35em] text-gold font-bold">The Bride &amp; Groom</span>
+                <h2 class="serif-font text-4xl md:text-6xl font-bold gold-gradient">Destined in Starlight</h2>
             </div>
 
             <div class="grid md:grid-cols-2 gap-8 items-center">
                 <!-- Groom Card -->
-                <div class="glass-card rounded-3xl p-6 md:p-8 space-y-4 shadow-2xl relative overflow-hidden group">
-                    <div class="absolute -right-10 -top-10 w-40 h-40 bg-pink-500/10 rounded-full blur-2xl"></div>
-                    <div class="w-32 h-32 rounded-full border-2 border-pink-400 mx-auto overflow-hidden shadow-xl">
-                        <img src="https://placehold.co/400x400/26123b/f7e7ce?text=Shahzaib" alt="Shahzaib Majeed" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                <div class="glass-card rounded-3xl p-8 space-y-5 shadow-2xl relative overflow-hidden group floating-card border-gold/40">
+                    <div class="w-36 h-36 rounded-full border-2 border-gold mx-auto overflow-hidden shadow-2xl shimmer-gold">
+                        <img src="https://placehold.co/400x400/260a40/ffd700?text=Shahzaib" alt="Shahzaib Majeed" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                     </div>
-                    <h3 class="serif-font text-3xl font-bold dreamy-gradient">Shahzaib Majeed</h3>
-                    <p class="text-pink-300/80 text-xs uppercase tracking-widest">Son of Mr. &amp; Mrs. Majeed</p>
-                    <p class="text-sunset-champagne/90 text-sm font-light leading-relaxed px-4">
-                        "Ready to embark on the most beautiful dreamy journey of faith, love, and partnership."
+                    <h3 class="serif-font text-3xl font-bold gold-gradient">Shahzaib Majeed</h3>
+                    <p class="text-gold font-semibold text-xs uppercase tracking-widest">Son of Mr. &amp; Mrs. Majeed</p>
+                    <p class="text-gold-champagne/90 text-sm font-light leading-relaxed px-4">
+                        "Ready to embark on the most magnificent journey of faith, love, and partnership."
                     </p>
                 </div>
 
                 <!-- Bride Card -->
-                <div class="glass-card rounded-3xl p-6 md:p-8 space-y-4 shadow-2xl relative overflow-hidden group">
-                    <div class="absolute -left-10 -top-10 w-40 h-40 bg-yellow-500/10 rounded-full blur-2xl"></div>
-                    <div class="w-32 h-32 rounded-full border-2 border-pink-400 mx-auto overflow-hidden shadow-xl">
-                        <img src="https://placehold.co/400x400/26123b/f7e7ce?text=Afifa" alt="Afifa Maryam" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                <div class="glass-card rounded-3xl p-8 space-y-5 shadow-2xl relative overflow-hidden group floating-element border-gold/40">
+                    <div class="w-36 h-36 rounded-full border-2 border-gold mx-auto overflow-hidden shadow-2xl shimmer-gold">
+                        <img src="https://placehold.co/400x400/260a40/ffd700?text=Afifa" alt="Afifa Maryam" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                     </div>
-                    <h3 class="serif-font text-3xl font-bold dreamy-gradient">Afifa Maryam</h3>
-                    <p class="text-pink-300/80 text-xs uppercase tracking-widest">Daughter of Mr. &amp; Mrs. Samiullah</p>
-                    <p class="text-sunset-champagne/90 text-sm font-light leading-relaxed px-4">
+                    <h3 class="serif-font text-3xl font-bold gold-gradient">Afifa Maryam</h3>
+                    <p class="text-gold font-semibold text-xs uppercase tracking-widest">Daughter of Mr. &amp; Mrs. Samiullah</p>
+                    <p class="text-gold-champagne/90 text-sm font-light leading-relaxed px-4">
                         "Looking forward to a lifetime of shared laughter, magical moments, and unwavering support."
                     </p>
                 </div>
@@ -264,93 +297,106 @@
     </section>
 
     <!-- Events & Location Scanner Section -->
-    <section id="events" class="py-20 px-4 max-w-6xl mx-auto relative z-10">
-        <div class="text-center space-y-2 mb-16">
-            <span class="text-xs uppercase tracking-[0.3em] text-pink-300 font-semibold">Festivities &amp; GPS Radar</span>
-            <h2 class="serif-font text-4xl md:text-5xl font-bold dreamy-gradient">Wedding Events &amp; Locations</h2>
-            <p class="text-sunset-champagne/70 text-sm max-w-lg mx-auto">Explore our dreamy wedding itinerary and use our futuristic Location Scanner for precise GPS navigation.</p>
+    <section id="events" class="py-24 px-4 max-w-6xl mx-auto relative z-10">
+        <div class="text-center space-y-3 mb-16">
+            <span class="text-xs uppercase tracking-[0.35em] text-gold font-bold">Festivities &amp; GPS Radar</span>
+            <h2 class="serif-font text-4xl md:text-6xl font-bold gold-gradient">Wedding Events &amp; Timings</h2>
+            <p class="text-gold-champagne/80 text-sm max-w-lg mx-auto font-medium">Please review our schedule below. Tap the Location Scanner button for instant GPS directions.</p>
         </div>
 
         <div class="grid md:grid-cols-3 gap-8">
             <!-- Event 1: Mehndi -->
-            <div class="glass-card rounded-3xl p-6 md:p-8 flex flex-col justify-between shadow-2xl group transition-all duration-300">
-                <div class="space-y-4">
-                    <div class="w-14 h-14 bg-pink-500/10 rounded-2xl flex items-center justify-center border border-pink-400/40 group-hover:scale-110 transition-transform">
-                        <i class="fa-solid fa-music text-pink-300 text-xl"></i>
+            <div class="glass-card rounded-3xl p-8 flex flex-col justify-between shadow-2xl group transition-all duration-300 floating-element border-gold/40">
+                <div class="space-y-6">
+                    <div class="w-16 h-16 bg-gold/10 rounded-2xl flex items-center justify-center border border-gold/50 shimmer-gold">
+                        <i class="fa-solid fa-music text-gold text-2xl"></i>
                     </div>
-                    <span class="text-[10px] uppercase tracking-[0.25em] text-pink-300 font-bold block">Function 01</span>
-                    <h3 class="serif-font text-3xl font-bold dreamy-gradient">The Mehndi</h3>
-                    <div class="space-y-2.5 text-xs text-sunset-champagne/90 font-light pt-2">
-                        <p class="flex items-center gap-2">
-                            <i class="fa-regular fa-calendar text-pink-300 w-4"></i> 29-Oct-2026
-                        </p>
-                        <p class="flex items-center gap-2">
-                            <i class="fa-regular fa-clock text-pink-300 w-4"></i> Time: 7 PM onward
-                        </p>
-                        <p class="flex items-center gap-2 pt-1">
-                            <i class="fa-solid fa-location-dot text-pink-300 w-4"></i> Location: Nazir Garden
-                        </p>
+                    <span class="text-[11px] uppercase tracking-[0.3em] text-gold font-black block">Function 01</span>
+                    <h3 class="serif-font text-3xl font-bold gold-gradient">The Mehndi</h3>
+                    
+                    <div class="space-y-3.5 bg-twilight-950/80 p-5 rounded-2xl border border-gold/30">
+                        <div>
+                            <span class="text-[10px] uppercase tracking-widest text-gold/80 block font-bold">Date</span>
+                            <span class="text-lg md:text-xl font-black text-gold-champagne tracking-wide">29 October 2026</span>
+                        </div>
+                        <div>
+                            <span class="text-[10px] uppercase tracking-widest text-gold/80 block font-bold">Timing</span>
+                            <span class="text-xl md:text-2xl font-black text-gold tracking-wide drop-shadow-md">7 PM Onward</span>
+                        </div>
+                        <div>
+                            <span class="text-[10px] uppercase tracking-widest text-gold/80 block font-bold">Venue Location</span>
+                            <span class="text-base md:text-lg font-bold text-gold-champagne block">Nazir Garden</span>
+                        </div>
                     </div>
                 </div>
                 <div class="pt-8">
-                    <button onclick="openScannerModal('Nazir Garden', '31.5497° N, 74.3436° E', 'https://www.google.com/maps/search/?api=1&query=Nazir+Garden')" class="w-full bg-pink-500/10 hover:bg-pink-500 text-pink-200 hover:text-purple-950 border border-pink-400/40 font-semibold py-3 rounded-xl transition-all text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+                    <button onclick="openScannerModal('Nazir Garden', '31.5497° N, 74.3436° E', 'https://www.google.com/maps/search/?api=1&query=Nazir+Garden'); playChime();" class="w-full bg-gold/10 hover:bg-gold active:scale-95 text-gold hover:text-twilight-950 border border-gold font-black py-4 rounded-2xl transition-all text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg">
                         <i class="fa-solid fa-radar"></i> Location Scanner
                     </button>
                 </div>
             </div>
 
-            <!-- Event 2: Barat -->
-            <div class="glass-card rounded-3xl p-6 md:p-8 flex flex-col justify-between shadow-2xl group transition-all duration-300 transform md:-translate-y-3 border-pink-400/80">
-                <div class="space-y-4">
-                    <div class="w-14 h-14 bg-pink-500/20 rounded-2xl flex items-center justify-center border border-pink-400 group-hover:scale-110 transition-transform">
-                        <i class="fa-solid fa-ring text-pink-300 text-xl"></i>
+            <!-- Event 2: Barat (Main Event) -->
+            <div class="glass-card rounded-3xl p-8 flex flex-col justify-between shadow-2xl group transition-all duration-300 transform md:-translate-y-4 border-2 border-gold floating-card">
+                <div class="space-y-6">
+                    <div class="w-16 h-16 bg-gold/20 rounded-2xl flex items-center justify-center border border-gold shimmer-gold">
+                        <i class="fa-solid fa-ring text-gold text-2xl"></i>
                     </div>
-                    <span class="text-[10px] uppercase tracking-[0.25em] text-pink-300 font-bold block">Function 02 (Main Event)</span>
-                    <h3 class="serif-font text-3xl font-bold dreamy-gradient">The Barat</h3>
-                    <div class="space-y-2.5 text-xs text-sunset-champagne/90 font-light pt-2">
-                        <p class="flex items-center gap-2">
-                            <i class="fa-regular fa-calendar text-pink-300 w-4"></i> 30 Oct 2026
-                        </p>
-                        <p class="flex items-center gap-2">
-                            <i class="fa-solid fa-crown text-pink-300 w-4"></i> Sehra Bandi: 4 PM
-                        </p>
-                        <p class="flex items-center gap-2">
-                            <i class="fa-regular fa-clock text-pink-300 w-4"></i> Timing: 6 PM to 9 PM
-                        </p>
-                        <p class="flex items-center gap-2 pt-1">
-                            <i class="fa-solid fa-location-dot text-pink-300 w-4"></i> Location: Samiullah Associates Gazi Road
-                        </p>
+                    <span class="text-[11px] uppercase tracking-[0.3em] text-gold font-black block">Function 02 (Main Event)</span>
+                    <h3 class="serif-font text-3xl font-bold gold-gradient">The Barat</h3>
+                    
+                    <div class="space-y-3.5 bg-twilight-950/90 p-5 rounded-2xl border-2 border-gold/70 shadow-inner">
+                        <div>
+                            <span class="text-[10px] uppercase tracking-widest text-gold/80 block font-bold">Date</span>
+                            <span class="text-lg md:text-xl font-black text-gold-champagne tracking-wide">30 October 2026</span>
+                        </div>
+                        <div>
+                            <span class="text-[10px] uppercase tracking-widest text-gold/80 block font-bold">Sehra Bandi</span>
+                            <span class="text-xl font-extrabold text-gold tracking-wide">4:00 PM</span>
+                        </div>
+                        <div>
+                            <span class="text-[10px] uppercase tracking-widest text-gold/80 block font-bold">Event Timing</span>
+                            <span class="text-xl md:text-2xl font-black text-gold tracking-wide drop-shadow-md">6:00 PM to 9:00 PM</span>
+                        </div>
+                        <div>
+                            <span class="text-[10px] uppercase tracking-widest text-gold/80 block font-bold">Venue Location</span>
+                            <span class="text-base md:text-lg font-bold text-gold-champagne block">Samiullah Associates Gazi Road</span>
+                        </div>
                     </div>
                 </div>
                 <div class="pt-8">
-                    <button onclick="openScannerModal('Samiullah Associates Gazi Road', '31.4821° N, 74.3725° E', 'https://www.google.com/maps/search/?api=1&query=Samiullah+Associates+Gazi+Road')" class="w-full bg-gradient-to-r from-pink-400 to-yellow-400 hover:opacity-90 text-purple-950 font-bold py-3 rounded-xl transition-all text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg">
+                    <button onclick="openScannerModal('Samiullah Associates Gazi Road', '31.4821° N, 74.3725° E', 'https://www.google.com/maps/search/?api=1&query=Samiullah+Associates+Gazi+Road'); playChime();" class="w-full bg-gradient-to-r from-gold via-gold-light to-gold-dark hover:opacity-95 active:scale-95 text-twilight-950 font-black py-4 rounded-2xl transition-all text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-2xl">
                         <i class="fa-solid fa-radar"></i> Location Scanner
                     </button>
                 </div>
             </div>
 
             <!-- Event 3: Valima -->
-            <div class="glass-card rounded-3xl p-6 md:p-8 flex flex-col justify-between shadow-2xl group transition-all duration-300">
-                <div class="space-y-4">
-                    <div class="w-14 h-14 bg-pink-500/10 rounded-2xl flex items-center justify-center border border-pink-400/40 group-hover:scale-110 transition-transform">
-                        <i class="fa-solid fa-champagne-glasses text-pink-300 text-xl"></i>
+            <div class="glass-card rounded-3xl p-8 flex flex-col justify-between shadow-2xl group transition-all duration-300 floating-element border-gold/40">
+                <div class="space-y-6">
+                    <div class="w-16 h-16 bg-gold/10 rounded-2xl flex items-center justify-center border border-gold/50 shimmer-gold">
+                        <i class="fa-solid fa-champagne-glasses text-gold text-2xl"></i>
                     </div>
-                    <span class="text-[10px] uppercase tracking-[0.25em] text-pink-300 font-bold block">Function 03</span>
-                    <h3 class="serif-font text-3xl font-bold dreamy-gradient">The Valima</h3>
-                    <div class="space-y-2.5 text-xs text-sunset-champagne/90 font-light pt-2">
-                        <p class="flex items-center gap-2">
-                            <i class="fa-regular fa-calendar text-pink-300 w-4"></i> 31-October 2026
-                        </p>
-                        <p class="flex items-center gap-2">
-                            <i class="fa-regular fa-clock text-pink-300 w-4"></i> Timing: 12 AM - 4 PM (Lunch)
-                        </p>
-                        <p class="flex items-center gap-2 pt-1">
-                            <i class="fa-solid fa-location-dot text-pink-300 w-4"></i> Location: NAWAB farm house
-                        </p>
+                    <span class="text-[11px] uppercase tracking-[0.3em] text-gold font-black block">Function 03</span>
+                    <h3 class="serif-font text-3xl font-bold gold-gradient">The Valima</h3>
+                    
+                    <div class="space-y-3.5 bg-twilight-950/80 p-5 rounded-2xl border border-gold/30">
+                        <div>
+                            <span class="text-[10px] uppercase tracking-widest text-gold/80 block font-bold">Date</span>
+                            <span class="text-lg md:text-xl font-black text-gold-champagne tracking-wide">31 October 2026</span>
+                        </div>
+                        <div>
+                            <span class="text-[10px] uppercase tracking-widest text-gold/80 block font-bold">Timing (Lunch)</span>
+                            <span class="text-xl md:text-2xl font-black text-gold tracking-wide drop-shadow-md">12:00 PM - 4:00 PM</span>
+                        </div>
+                        <div>
+                            <span class="text-[10px] uppercase tracking-widest text-gold/80 block font-bold">Venue Location</span>
+                            <span class="text-base md:text-lg font-bold text-gold-champagne block">NAWAB Farm House</span>
+                        </div>
                     </div>
                 </div>
                 <div class="pt-8">
-                    <button onclick="openScannerModal('NAWAB farm house', '31.4501° N, 74.3102° E', 'https://www.google.com/maps/search/?api=1&query=NAWAB+farm+house')" class="w-full bg-pink-500/10 hover:bg-pink-500 text-pink-200 hover:text-purple-950 border border-pink-400/40 font-semibold py-3 rounded-xl transition-all text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+                    <button onclick="openScannerModal('NAWAB farm house', '31.4501° N, 74.3102° E', 'https://www.google.com/maps/search/?api=1&query=NAWAB+farm+house'); playChime();" class="w-full bg-gold/10 hover:bg-gold active:scale-95 text-gold hover:text-twilight-950 border border-gold font-black py-4 rounded-2xl transition-all text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg">
                         <i class="fa-solid fa-radar"></i> Location Scanner
                     </button>
                 </div>
@@ -359,55 +405,55 @@
     </section>
 
     <!-- RSVP Form Section -->
-    <section id="rsvp" class="py-20 px-4 relative z-10 bg-purple-950/30 border-y border-pink-500/20">
+    <section id="rsvp" class="py-24 px-4 relative z-10 bg-twilight-900/40 border-y border-gold/30">
         <div class="max-w-2xl mx-auto">
-            <div class="text-center space-y-2 mb-10">
-                <span class="text-xs uppercase tracking-[0.3em] text-pink-300 font-semibold">Response Card</span>
-                <h2 class="serif-font text-4xl md:text-5xl font-bold dreamy-gradient">Online RSVP Form</h2>
-                <p class="text-sunset-champagne/70 text-sm">Please submit your attendance response by October 25, 2026.</p>
+            <div class="text-center space-y-3 mb-12">
+                <span class="text-xs uppercase tracking-[0.35em] text-gold font-bold">Response Card</span>
+                <h2 class="serif-font text-4xl md:text-6xl font-bold gold-gradient">Online RSVP Form</h2>
+                <p class="text-gold-champagne/70 text-sm">Please submit your attendance response by October 25, 2026.</p>
             </div>
 
-            <form id="rsvp-form" onsubmit="handleRSVP(event)" class="glass-card rounded-3xl p-6 md:p-10 space-y-6 shadow-2xl">
+            <form id="rsvp-form" onsubmit="handleRSVP(event)" class="glass-card rounded-3xl p-8 md:p-12 space-y-6 shadow-2xl border-gold/50">
                 <div>
-                    <label class="block text-xs uppercase tracking-widest text-sunset-champagne mb-2 font-medium">Your Full Name &amp; Title *</label>
-                    <input type="text" id="guest-name" required placeholder="e.g. Dr. Ahmed Khan & Family" class="w-full bg-dreamy-950/60 border border-pink-400/30 rounded-xl px-4 py-3 text-sunset-champagne placeholder-sunset-champagne/40 text-sm focus:outline-none focus:border-pink-400 transition-colors">
+                    <label class="block text-xs uppercase tracking-widest text-gold-champagne mb-2 font-semibold">Your Full Name &amp; Title *</label>
+                    <input type="text" id="guest-name" required placeholder="e.g. Dr. Ahmed Khan & Family" class="w-full bg-twilight-950/80 border border-gold/40 rounded-2xl px-5 py-3.5 text-gold-champagne placeholder-gold-champagne/40 text-sm focus:outline-none focus:border-gold transition-colors">
                 </div>
 
-                <div class="grid md:grid-cols-2 gap-4">
+                <div class="grid md:grid-cols-2 gap-5">
                     <div>
-                        <label class="block text-xs uppercase tracking-widest text-sunset-champagne mb-2 font-medium">Phone Number / Email *</label>
-                        <input type="text" id="guest-contact" required placeholder="+92 300 1234567" class="w-full bg-dreamy-950/60 border border-pink-400/30 rounded-xl px-4 py-3 text-sunset-champagne placeholder-sunset-champagne/40 text-sm focus:outline-none focus:border-pink-400 transition-colors">
+                        <label class="block text-xs uppercase tracking-widest text-gold-champagne mb-2 font-semibold">Phone Number / Email *</label>
+                        <input type="text" id="guest-contact" required placeholder="+92 300 1234567" class="w-full bg-twilight-950/80 border border-gold/40 rounded-2xl px-5 py-3.5 text-gold-champagne placeholder-gold-champagne/40 text-sm focus:outline-none focus:border-gold transition-colors">
                     </div>
                     <div>
-                        <label class="block text-xs uppercase tracking-widest text-sunset-champagne mb-2 font-medium">Attendance Status *</label>
-                        <select id="guest-status" onchange="toggleEventSelection()" class="w-full bg-dreamy-950/60 border border-pink-400/30 rounded-xl px-4 py-3 text-sunset-champagne text-sm focus:outline-none focus:border-pink-400 transition-colors">
-                            <option value="Attending" class="bg-dreamy-950">Joyfully Accepting</option>
-                            <option value="Not Attending" class="bg-dreamy-950">Regretfully Declining</option>
+                        <label class="block text-xs uppercase tracking-widest text-gold-champagne mb-2 font-semibold">Attendance Status *</label>
+                        <select id="guest-status" onchange="toggleEventSelection()" class="w-full bg-twilight-950/80 border border-gold/40 rounded-2xl px-5 py-3.5 text-gold-champagne text-sm focus:outline-none focus:border-gold transition-colors">
+                            <option value="Attending" class="bg-twilight-950">Joyfully Accepting</option>
+                            <option value="Not Attending" class="bg-twilight-950">Regretfully Declining</option>
                         </select>
                     </div>
                 </div>
 
                 <div id="events-selection-box">
-                    <label class="block text-xs uppercase tracking-widest text-sunset-champagne mb-2 font-medium">Select Events You Will Attend *</label>
+                    <label class="block text-xs uppercase tracking-widest text-gold-champagne mb-2 font-semibold">Select Events You Will Attend *</label>
                     <div class="grid grid-cols-3 gap-3">
-                        <label class="flex items-center gap-2 bg-dreamy-950/40 border border-pink-400/20 px-3 py-2.5 rounded-xl cursor-pointer hover:border-pink-400/50 text-xs text-sunset-champagne">
-                            <input type="checkbox" name="events" value="Mehndi" checked class="accent-pink-400"> Mehndi
+                        <label class="flex items-center justify-center gap-2 bg-twilight-950/60 border border-gold/30 px-3 py-3 rounded-2xl cursor-pointer hover:border-gold text-xs text-gold-champagne font-bold transition-all">
+                            <input type="checkbox" name="events" value="Mehndi" checked class="accent-gold"> Mehndi
                         </label>
-                        <label class="flex items-center gap-2 bg-dreamy-950/40 border border-pink-400/20 px-3 py-2.5 rounded-xl cursor-pointer hover:border-pink-400/50 text-xs text-sunset-champagne">
-                            <input type="checkbox" name="events" value="Barat" checked class="accent-pink-400"> Barat
+                        <label class="flex items-center justify-center gap-2 bg-twilight-950/60 border border-gold/30 px-3 py-3 rounded-2xl cursor-pointer hover:border-gold text-xs text-gold-champagne font-bold transition-all">
+                            <input type="checkbox" name="events" value="Barat" checked class="accent-gold"> Barat
                         </label>
-                        <label class="flex items-center gap-2 bg-dreamy-950/40 border border-pink-400/20 px-3 py-2.5 rounded-xl cursor-pointer hover:border-pink-400/50 text-xs text-sunset-champagne">
-                            <input type="checkbox" name="events" value="Valima" checked class="accent-pink-400"> Valima
+                        <label class="flex items-center justify-center gap-2 bg-twilight-950/60 border border-gold/30 px-3 py-3 rounded-2xl cursor-pointer hover:border-gold text-xs text-gold-champagne font-bold transition-all">
+                            <input type="checkbox" name="events" value="Valima" checked class="accent-gold"> Valima
                         </label>
                     </div>
                 </div>
 
                 <div>
-                    <label class="block text-xs uppercase tracking-widest text-sunset-champagne mb-2 font-medium">Wishes for Shahzaib &amp; Afifa</label>
-                    <textarea id="guest-wish" rows="3" placeholder="Write a heartwarming blessing for the couple..." class="w-full bg-dreamy-950/60 border border-pink-400/30 rounded-xl px-4 py-3 text-sunset-champagne placeholder-sunset-champagne/40 text-sm focus:outline-none focus:border-pink-400 transition-colors resize-none"></textarea>
+                    <label class="block text-xs uppercase tracking-widest text-gold-champagne mb-2 font-semibold">Wishes for Shahzaib &amp; Afifa</label>
+                    <textarea id="guest-wish" rows="3" placeholder="Write a heartwarming blessing for the couple..." class="w-full bg-twilight-950/80 border border-gold/40 rounded-2xl px-5 py-3.5 text-gold-champagne placeholder-gold-champagne/40 text-sm focus:outline-none focus:border-gold transition-colors resize-none"></textarea>
                 </div>
 
-                <button type="submit" onclick="playClickSound()" class="w-full bg-gradient-to-r from-pink-400 to-yellow-400 hover:opacity-90 text-purple-950 font-bold py-4 rounded-xl transition-all shadow-xl uppercase tracking-widest text-xs">
+                <button type="submit" onclick="playChime()" class="w-full bg-gradient-to-r from-gold via-gold-light to-gold-dark hover:opacity-95 active:scale-95 text-twilight-950 font-black py-4.5 rounded-2xl transition-all shadow-2xl uppercase tracking-widest text-xs">
                     Confirm &amp; Send RSVP
                 </button>
             </form>
@@ -415,11 +461,11 @@
     </section>
 
     <!-- Live Wishes Wall Section -->
-    <section id="wishes" class="py-20 px-4 max-w-4xl mx-auto relative z-10">
-        <div class="text-center space-y-2 mb-12">
-            <span class="text-xs uppercase tracking-[0.3em] text-pink-300 font-semibold">Wall of Blessings</span>
-            <h2 class="serif-font text-4xl font-bold dreamy-gradient">Live Guest Wishes</h2>
-            <p class="text-sunset-champagne/70 text-sm">Heartfelt messages from friends and family members.</p>
+    <section id="wishes" class="py-24 px-4 max-w-4xl mx-auto relative z-10">
+        <div class="text-center space-y-3 mb-12">
+            <span class="text-xs uppercase tracking-[0.35em] text-gold font-bold">Wall of Blessings</span>
+            <h2 class="serif-font text-4xl font-bold gold-gradient">Live Guest Wishes</h2>
+            <p class="text-gold-champagne/70 text-sm">Heartfelt messages from friends and family members.</p>
         </div>
 
         <div id="wishes-container" class="grid md:grid-cols-2 gap-4">
@@ -428,84 +474,155 @@
     </section>
 
     <!-- Footer -->
-    <footer class="py-12 px-4 bg-dreamy-950 border-t border-pink-500/20 text-center space-y-4 relative z-10">
-        <div class="serif-font text-3xl font-bold dreamy-gradient tracking-widest">Shahzaib &amp; Afifa</div>
-        <p class="text-sunset-champagne/60 text-xs tracking-widest uppercase">We await your gracious presence with excitement and joy!</p>
-        <p class="text-sunset-champagne/40 text-[10px] pt-4">&copy; 2026 Shahzaib &amp; Afifa Wedding Celebration. Built with Dreamy Precision.</p>
+    <footer class="py-12 px-4 bg-twilight-950 border-t border-gold/30 text-center space-y-4 relative z-10 mb-20 md:mb-0">
+        <div class="serif-font text-3xl font-bold gold-gradient tracking-widest">Shahzaib &amp; Afifa</div>
+        <p class="text-gold-champagne/60 text-xs tracking-widest uppercase font-medium">We await your gracious presence with excitement and joy!</p>
+        <p class="text-gold-champagne/40 text-[10px] pt-4">&copy; 2026 Shahzaib &amp; Afifa Wedding Celebration. Built with Royal Precision.</p>
     </footer>
 
     <!-- JavaScript Application Logic -->
     <script>
-        // --- Web Audio API Sound Effects & Ambient Melody ---
+        // --- Typewriter Effect for Hero Title ---
+        const fullTitleText = "Shahzaib Majeed\n& Afifa Maryam";
+        let charIndex = 0;
+
+        function typeWriter() {
+            const container = document.getElementById("typewriter-text");
+            if (charIndex < fullTitleText.length) {
+                if (fullTitleText.charAt(charIndex) === '\n') {
+                    container.innerHTML += '<br>';
+                } else {
+                    container.innerHTML += fullTitleText.charAt(charIndex);
+                }
+                charIndex++;
+                setTimeout(typeWriter, 38);
+            } else {
+                const cursor = document.querySelector('.typing-cursor');
+                if (cursor) cursor.style.animation = 'blinkCursor 0.6s infinite';
+            }
+        }
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(typeWriter, 300);
+        });
+
+        // --- Web Audio API Calming Lullaby & Sound FX Engine ---
         let audioCtx = null;
-        let isAudioPlaying = false;
-        let ambientOscillator = null;
-        let ambientGain = null;
+        let isMusicPlaying = false;
+        let musicInterval = null;
 
         function initAudio() {
             if (!audioCtx) {
                 audioCtx = new (window.AudioContext || window.webkitAudioContext)();
             }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
         }
 
-        // Play gentle chime for buttons
-        function playClickSound() {
+        function playChime() {
             try {
                 initAudio();
-                if (!audioCtx) return;
+                const now = audioCtx.currentTime;
+                
                 const osc = audioCtx.createOscillator();
                 const gain = audioCtx.createGain();
                 osc.type = 'sine';
-                osc.frequency.setValueAtTime(659.25, audioCtx.currentTime); // E5 note
-                osc.frequency.exponentialRampToValueAtTime(987.77, audioCtx.currentTime + 0.1);
-                gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1);
+                osc.frequency.setValueAtTime(659.25, now);
+                osc.frequency.exponentialRampToValueAtTime(1318.51, now + 0.3);
+                
+                gain.gain.setValueAtTime(0.05, now);
+                gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.35);
+                
                 osc.connect(gain);
                 gain.connect(audioCtx.destination);
-                osc.start();
-                osc.stop(audioCtx.currentTime + 0.1);
-            } catch (e) {
-                console.log("Audio not allowed yet");
-            }
+                osc.start(now);
+                osc.stop(now + 0.35);
+            } catch (e) {}
         }
 
-        // Toggle Dreamy Ambient Soundscape
-        function toggleAudio() {
+        function triggerRipple(e) {
+            const target = e.target.closest('button, a');
+            if (!target) return;
+            const circle = document.createElement('span');
+            const diameter = Math.max(target.clientWidth, target.clientHeight);
+            const radius = diameter / 2;
+
+            circle.style.width = circle.style.height = `${diameter}px`;
+            circle.style.left = `${e.clientX - target.getBoundingClientRect().left - radius}px`;
+            circle.style.top = `${e.clientY - target.getBoundingClientRect().top - radius}px`;
+            circle.classList.add('ripple');
+
+            const rippleChild = target.getElementsByClassName('ripple')[0];
+            if (rippleChild) rippleChild.remove();
+
+            target.style.position = 'relative';
+            target.style.overflow = 'hidden';
+            target.appendChild(circle);
+        }
+
+        function toggleAmbientMusic() {
             initAudio();
             const btnIcon = document.getElementById('audio-icon');
-            if (!isAudioPlaying) {
-                if (audioCtx.state === 'suspended') {
-                    audioCtx.resume();
-                }
-                ambientOscillator = audioCtx.createOscillator();
-                ambientGain = audioCtx.createGain();
-                ambientOscillator.type = 'sine';
-                ambientOscillator.frequency.setValueAtTime(329.63, audioCtx.currentTime); // E4 dreamy chord
-                
-                const filter = audioCtx.createBiquadFilter();
-                filter.type = 'lowpass';
-                filter.frequency.setValueAtTime(800, audioCtx.currentTime);
+            const eqBox = document.getElementById('eq-visualizer');
 
-                ambientGain.gain.setValueAtTime(0.015, audioCtx.currentTime);
-                
-                ambientOscillator.connect(filter);
-                filter.connect(ambientGain);
-                ambientGain.connect(audioCtx.destination);
-                
-                ambientOscillator.start();
-                isAudioPlaying = true;
-                btnIcon.className = "fa-solid fa-volume-high text-lg";
-            } else {
-                if (ambientOscillator) {
-                    ambientOscillator.stop();
-                    ambientOscillator.disconnect();
+            if (!isMusicPlaying) {
+                isMusicPlaying = true;
+                btnIcon.className = "fa-solid fa-volume-high text-xl";
+                eqBox.classList.remove('hidden');
+                eqBox.classList.add('flex');
+
+                const chords = [
+                    [261.63, 329.63, 392.00],
+                    [220.00, 261.63, 329.63],
+                    [174.61, 220.00, 261.63],
+                    [196.00, 246.94, 293.66]
+                ];
+                let chordIndex = 0;
+
+                function playChordPad() {
+                    if (!isMusicPlaying) return;
+                    const chord = chords[chordIndex];
+                    chordIndex = (chordIndex + 1) % chords.length;
+
+                    chord.forEach((freq, idx) => {
+                        try {
+                            const osc = audioCtx.createOscillator();
+                            const gain = audioCtx.createGain();
+                            const filter = audioCtx.createBiquadFilter();
+
+                            osc.type = idx === 0 ? 'triangle' : 'sine';
+                            osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+
+                            filter.type = 'lowpass';
+                            filter.frequency.setValueAtTime(500, audioCtx.currentTime);
+
+                            gain.gain.setValueAtTime(0.001, audioCtx.currentTime);
+                            gain.gain.linearRampToValueAtTime(0.015, audioCtx.currentTime + 1.5);
+                            gain.gain.linearRampToValueAtTime(0.001, audioCtx.currentTime + 5.5);
+
+                            osc.connect(filter);
+                            filter.connect(gain);
+                            gain.connect(audioCtx.destination);
+
+                            osc.start();
+                            osc.stop(audioCtx.currentTime + 5.8);
+                        } catch (e) {}
+                    });
                 }
-                isAudioPlaying = false;
-                btnIcon.className = "fa-solid fa-volume-xmark text-lg";
+
+                playChordPad();
+                musicInterval = setInterval(playChordPad, 6000);
+
+            } else {
+                isMusicPlaying = false;
+                if (musicInterval) clearInterval(musicInterval);
+                btnIcon.className = "fa-solid fa-music text-xl";
+                eqBox.classList.remove('flex');
+                eqBox.classList.add('hidden');
             }
         }
 
-        // --- Particle & Starlight Bokeh Background Canvas ---
+        // --- Gold Particle Canvas ---
         const canvas = document.getElementById('particle-canvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
@@ -524,8 +641,8 @@
                 this.size = Math.random() * 2.5 + 0.8;
                 this.speedX = (Math.random() - 0.5) * 0.3;
                 this.speedY = (Math.random() - 0.5) * 0.3 - 0.15;
-                this.opacity = Math.random() * 0.7 + 0.2;
-                this.color = Math.random() > 0.5 ? '255, 183, 197' : '255, 215, 0'; // Pink or Gold bokeh
+                this.opacity = Math.random() * 0.8 + 0.2;
+                this.color = Math.random() > 0.3 ? '255, 215, 0' : '255, 183, 197';
             }
             update() {
                 this.x += this.speedX;
@@ -542,7 +659,7 @@
             }
         }
 
-        for (let i = 0; i < 85; i++) {
+        for (let i = 0; i < 90; i++) {
             particles.push(new Particle());
         }
 
@@ -584,17 +701,14 @@
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
-        // --- Mobile Menu Toggle ---
         function toggleMobileMenu() {
             const menu = document.getElementById('mobile-menu');
             menu.classList.toggle('hidden');
         }
 
-        // --- Location Scanner Modal Integration ---
         let currentMapsUrl = '';
 
         function openScannerModal(venueName, latLong, mapsUrl) {
-            playClickSound();
             currentMapsUrl = mapsUrl;
             document.getElementById('scanner-venue-title').innerText = venueName;
             document.getElementById('scan-lat').innerText = latLong;
@@ -612,17 +726,15 @@
         }
 
         function launchDirections() {
-            playClickSound();
             if (currentMapsUrl) {
                 window.open(currentMapsUrl, '_blank');
             }
             closeScanner();
         }
 
-        // --- RSVP & Wishes Wall with LocalStorage Persistence ---
-        let wishesList = JSON.parse(localStorage.getItem('wedding_wishes_shahzaib')) || [
-            { name: "sadia", wish: "May Allah bless your marriage with endless happiness, prosperity, and everlasting love. Heartiest congratulations!", time: "Today" },
-            { name: "Bilal", wish: "Wishing Shahzaib & Afifa a magnificent dreamy journey ahead as you build your new lives together!", time: "Yesterday" }
+        let wishesList = JSON.parse(localStorage.getItem('wedding_wishes_shahzaib_v3')) || [
+            { name: "Sadia", wish: "May Allah bless your marriage with endless happiness, prosperity, and everlasting love. Heartiest congratulations!", time: "Today" },
+            { name: "Bilal", wish: "Wishing Shahzaib & Afifa a magnificent journey ahead as you build your new lives together!", time: "Yesterday" }
         ];
 
         function renderWishes() {
@@ -630,13 +742,13 @@
             container.innerHTML = '';
             wishesList.forEach(item => {
                 const card = document.createElement('div');
-                card.className = 'glass-card rounded-2xl p-5 space-y-2 shadow-md';
+                card.className = 'glass-card rounded-2xl p-5 space-y-2 shadow-md border-gold/30';
                 card.innerHTML = `
                     <div class="flex justify-between items-center">
-                        <span class="serif-font text-pink-300 font-bold text-lg">${escapeHtml(item.name)}</span>
-                        <span class="text-[10px] text-sunset-champagne/50 uppercase tracking-widest">${escapeHtml(item.time)}</span>
+                        <span class="serif-font text-gold font-bold text-lg">${escapeHtml(item.name)}</span>
+                        <span class="text-[10px] text-gold-champagne/50 uppercase tracking-widest">${escapeHtml(item.time)}</span>
                     </div>
-                    <p class="text-sunset-champagne/90 text-xs italic">"${escapeHtml(item.wish)}"</p>
+                    <p class="text-gold-champagne/90 text-xs italic">"${escapeHtml(item.wish)}"</p>
                 `;
                 container.appendChild(card);
             });
@@ -657,6 +769,7 @@
 
         function handleRSVP(event) {
             event.preventDefault();
+            playChime();
             const name = document.getElementById('guest-name').value;
             const status = document.getElementById('guest-status').value;
             const wish = document.getElementById('guest-wish').value.trim();
@@ -681,7 +794,7 @@
                     wish: wish,
                     time: "Just now"
                 });
-                localStorage.setItem('wedding_wishes_shahzaib', JSON.stringify(wishesList));
+                localStorage.setItem('wedding_wishes_shahzaib_v3', JSON.stringify(wishesList));
                 renderWishes();
             }
 
